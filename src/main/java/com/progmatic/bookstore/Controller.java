@@ -18,19 +18,16 @@ public class Controller implements AutoCloseable {
 
             Book b1 = new Book();
             b1.setIsbn("ISBN123456");
-            b1.setAuthor("Robin Cook");
             b1.setTitle("Genezis");
             s.persist(b1);
 
             Book b2 = new Book();
             b2.setIsbn("ISBN234567");
-            b2.setAuthor("Ken Kesey");
             b2.setTitle("Száll a kakukk a fészkére");
             s.persist(b2);
 
             Book b3 = new Book();
             b3.setIsbn("ISBN345678");
-            b3.setAuthor("Jack Kerouac");
             b3.setTitle("Úton");
             s.persist(b3);
 

@@ -10,31 +10,27 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private Long id;
 
     private String isbn;
 
-    private String author;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author author;
 
     private String title;
 
-    @OneToMany
-    @JoinTable(
-            name= "Stock",
-            joinColumns = @JoinColumn(name= "BookId"),
-            inverseJoinColumns = @JoinColumn(name= "StoreId")
-    )
-
-    private List<Store> inStockAt;
+    @OneToMany(mappedBy = "book")
+    private List<Stock> stores;
 
     private boolean onLine;
 
-    public Long getBookId() {
-        return bookId;
+    public Long getId() {
+        return id;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIsbn() {
@@ -45,11 +41,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -61,12 +57,12 @@ public class Book {
         this.title = title;
     }
 
-    public List<Store> getInStockAt() {
-        return inStockAt;
+    public List<Stock> getStores() {
+        return stores;
     }
 
-    public void setInStockAt(List<Store> inStockAt) {
-        this.inStockAt = inStockAt;
+    public void setStores(List<Stock> stores) {
+        this.stores = stores;
     }
 
     public boolean isOnLine() {
@@ -80,11 +76,10 @@ public class Book {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Book{");
-        sb.append("bookId=").append(bookId);
+        sb.append("bookId=").append(id);
         sb.append(", isbn='").append(isbn).append('\'');
         sb.append(", author='").append(author).append('\'');
         sb.append(", title='").append(title).append('\'');
-        sb.append(", inStockAt=").append(inStockAt);
         sb.append(", onLine=").append(onLine);
         sb.append('}');
         return sb.toString();

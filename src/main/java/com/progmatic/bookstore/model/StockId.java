@@ -7,6 +7,7 @@ import java.io.Serializable;
 @Embeddable
 public class StockId implements Serializable {
 
+
     private Long storeId;
     private Long bookId;
 
